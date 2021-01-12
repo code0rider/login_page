@@ -6,7 +6,7 @@ bool islogged(string username,string password)
       ifstream file;
       file.open("testing1.txt");
       string s1=username+" "+password;
-      string s2; // hey i changed something
+      string s2;
       while(getline(file,s2))
       {
           if(s2==s1)
@@ -41,6 +41,27 @@ void save(string username,string password)
     file<<s;
     file.close();
 }
+bool check_already_exist(string username)
+{
+    ifstream file;
+    file.open("testing1.txt",ios::in);
+    string s;
+    while(getline(file,s))
+    {
+        int n=s.length();
+        string u="";
+    
+       int i=0;
+        for(;i<n && s[i]!=' ' ;++i)
+        {
+            u+=s[i];
+        }
+        cout<<u<<" "<<i<<endl;
+        if(u==username)
+        return true;
+    }
+    return false;
+}
 int main()
 {
     while(true)
@@ -69,8 +90,19 @@ int main()
         else
         if(select ==2)
         {
-                cout<<"Enter New User Name: ";
-               username=username_input();
+               cout<<"Enter New User Name: ";
+               while(true)
+               {
+                username=username_input();
+                if(check_already_exist(username))
+                 {
+                    cout<<"\nUser Name already exist try again !!!: ";
+                 }
+                 else
+                 {
+                     break;
+                 }
+               }
                cout<<"Enter New Password: ";
                password=password_input();
                save(username,password);
