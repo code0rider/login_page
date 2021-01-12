@@ -6,7 +6,7 @@ bool islogged(string username,string password)
       ifstream file;
       file.open("testing1.txt");
       string s1=username+" "+password;
-      string s2;
+      string s2; // hey i changed something
       while(getline(file,s2))
       {
           if(s2==s1)
