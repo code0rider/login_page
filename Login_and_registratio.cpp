@@ -36,10 +36,9 @@ string password_input()
 void save(string username,string password)
 {
     ofstream file;
-    file.open("testing1.txt",ios::out);
+    file.open("testing1.txt",ios::app);
     string s=username+" "+password;
-    file<<s;
-    file.close();
+    file<<s<<endl;
 }
 bool check_already_exist(string username)
 {
@@ -56,7 +55,7 @@ bool check_already_exist(string username)
         {
             u+=s[i];
         }
-        cout<<u<<" "<<i<<endl;
+        //cout<<u<<" "<<i<<endl;
         if(u==username)
         return true;
     }
@@ -90,9 +89,9 @@ int main()
         else
         if(select ==2)
         {
-               cout<<"Enter New User Name: ";
-               while(true)
-               {
+                while(true)
+              {
+                cout<<"Enter New User Name: ";
                 username=username_input();
                 if(check_already_exist(username))
                  {
@@ -111,7 +110,7 @@ int main()
         else
         {
            cout<<"Exit";
-           break;
+           exit(0);
         }
     }
 }
